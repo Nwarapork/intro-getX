@@ -28,7 +28,13 @@ class HomeView extends GetView<HomeController> {
                   controller.increment();
                 },
                 icon: const Icon(Icons.plus_one),
-                label: const Text('Plus 1️⃣'))
+                label: const Text('Plus 1️⃣')),
+            const SizedBox(
+              height: 12,
+            ),
+            ElevatedButton(
+                onPressed: () => Get.toNamed('/home/detail'),
+                child: const Text('Go to detail Page'))
           ],
         ));
   }
