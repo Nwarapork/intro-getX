@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intro_getx/app/controllers/app_controller.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -13,29 +14,15 @@ class HomeView extends GetView<HomeController> {
           title: const Text('HomeView'),
           centerTitle: true,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-                child: Obx(
-              () => Text(
-                '📎 Count : ${controller.count.value}',
-                style: const TextStyle(fontSize: 20),
-              ),
-            )),
-            ElevatedButton.icon(
-                onPressed: () {
-                  controller.increment();
-                },
-                icon: const Icon(Icons.plus_one),
-                label: const Text('Plus 1️⃣')),
-            const SizedBox(
-              height: 12,
-            ),
-            ElevatedButton(
-                onPressed: () => Get.toNamed('/home/detail'),
-                child: const Text('Go to detail Page'))
-          ],
-        ));
+        body: Obx(() {
+          return ListView.builder(
+              itemCount: controller.products.length,
+              itemBuilder: (context, i) {
+                return ListTile(
+                  title: Text(controller.products[i].title),
+
+                );
+              });
+        }));
   }
 }
